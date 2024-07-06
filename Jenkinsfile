@@ -5,7 +5,18 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    environment {
+        MAVEN_HOME = '/opt/apache-maven-3.9.5'
+        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+    }
     stages {
+        stage('Verify Maven') {
+            steps {
+                sh 'echo $MAVEN_HOME'
+                sh 'mvn -v'
+                sh 'which mvn'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
