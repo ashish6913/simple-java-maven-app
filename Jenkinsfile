@@ -4,6 +4,7 @@ pipeline {
     }
     options {
         skipStagesAfterUnstable()
+        onMonit()
     }
     environment {
         MAVEN_HOME = '/opt/apache-maven-3.9.5'
